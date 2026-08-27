@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela</title>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+    <main>
+        <table id="tabela-vendas" border="1">
+            <thead>
+                <tr>
+                    <th>Mês</th>
+                    <th>Vendas</th>
+                    <th>Total Acumulado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Janeiro</td><td><input type="number" class="vendas" value="0"></td><td class="acumulado">0</td></tr>
+                <tr><td>Fevereiro</td><td><input type="number" class="vendas" value="0"></td><td class="acumulado">0</td></tr>
+                <tr><td>Março</td><td><input type="number" class="vendas" value="0"></td><td class="acumulado">0</td></tr>
+                <tr><td>Abril</td><td><input type="number" class="vendas" value="0"></td><td class="acumulado">0</td></tr>
+                <tr><td>Maio</td><td><input type="number" class="vendas" value="0"></td><td class="acumulado">0</td></tr>
+                <tr><td>Junho</td><td><input type="number" class="vendas" value="0"></td><td class="acumulado">0</td></tr>
+                <tr><td>Julho</td><td><input type="number" class="vendas" value="0"></td><td class="acumulado">0</td></tr>
+                <tr><td>Agosto</td><td><input type="number" class="vendas" value="0"></td><td class="acumulado">0</td></tr>
+                <tr><td>Setembro</td><td><input type="number" class="vendas" value="0"></td><td class="acumulado">0</td></tr>
+                <tr><td>Outubro</td><td><input type="number" class="vendas" value="0"></td><td class="acumulado">0</td></tr>
+                <tr><td>Novembro</td><td><input type="number" class="vendas" value="0"></td><td class="acumulado">0</td></tr>
+                <tr><td>Dezembro</td><td><input type="number" class="vendas" value="0"></td><td class="acumulado">0</td></tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>Total do ano</td>
+                    <td></td>
+                    <td id="total-ano">0</td>
+                </tr>
+            </tfoot>
+        </table>
+    </main>
+
+    <script src="../../js/script.js"></script>
+    <script>
+        function calcularAcumulado() {
+            const linhas = document.querySelectorAll('#tabela-vendas tbody tr');
+            let total = 0;
+
+            linhas.forEach((linha) => {
+                const vendaMes = Number(linha.querySelector('.vendas').value) || 0;
+                total += vendaMes;
+                linha.querySelector('.acumulado').textContent = total;
+            });
+
+            document.getElementById('total-ano').textContent = total;
+        }
+
+        document.querySelectorAll('.vendas').forEach((input) => {
+            input.addEventListener('input', calcularAcumulado);
+        });
+
+        calcularAcumulado();
+    </script>
+</body>
+</html>
